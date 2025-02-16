@@ -1,0 +1,24 @@
+#root {
+  max-width: 1280px;
+}
+body::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Edge */
+}
+
+.app-container {
+  position: relative;
+  display: flex;
+  border: 2px solid whitesmoke;
+  min-height: 100vh;
+  width: 99.76vw;
+  top: 0;
+  left: 0;
+}
+
+.text {
+  left: 0rem;
+  top: 0rem;
+  display: flexbox;
+  border: 1px solid blue;
+  text-align: center;
+}
