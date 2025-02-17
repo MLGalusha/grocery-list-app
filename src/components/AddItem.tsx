@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Item } from "../types";
+import { ItemType } from "../types";
 
 interface AddItemProps {
-  onAddItem: (item: Item) => void;
+  onAddItem: (item: ItemType) => void;
 }
 
 export default function AddItem({ onAddItem }: AddItemProps) {

@@ -1,4 +1,4 @@
-export interface Item {
+export interface ItemType {
     id: string,
     text: string,
 }

@@ -1,10 +1,11 @@
 import AddItem from "./AddItem";
-import { Item } from "../types";
+import { ItemType } from "../types";
+import Item from "./Item";
 
 interface ItemListProps {
-  itemList: Item[];
-  onModifyItemList: (itemList: Item[]) => void;
-  onAddItem: (item: Item) => void;
+  itemList: ItemType[];
+  onModifyItemList: (itemList: ItemType[]) => void;
+  onAddItem: (item: ItemType) => void;
 }
 
 export default function ItemList({
@@ -15,6 +16,16 @@ export default function ItemList({
   return (
     <div>
       <AddItem onAddItem={onAddItem} />
+      <ul>
+        {itemList.map((item) => (
+          <Item
+            key={item.id}
+            item={item}
+            itemList={itemList}
+            onModifyItemList={onModifyItemList}
+          />
+        ))}
+      </ul>
     </div>
   );
 }

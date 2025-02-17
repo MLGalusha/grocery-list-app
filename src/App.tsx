@@ -1,16 +1,16 @@
 import { useState } from "react";
 import ItemList from "./components/ItemList";
 import "./components/styles/App.css";
-import { Item } from "./types";
+import { ItemType } from "./types";
 
 export default function App() {
-  const [itemList, setItemList] = useState<Item[]>([]);
+  const [itemList, setItemList] = useState<ItemType[]>([]);
 
-  function addItem(item: Item) {
+  function addItem(item: ItemType) {
     setItemList([...itemList, item]);
   }
 
-  function modifyItemList(newList: Item[]) {
+  function modifyItemList(newList: ItemType[]) {
     setItemList([...newList]);
   }
 
