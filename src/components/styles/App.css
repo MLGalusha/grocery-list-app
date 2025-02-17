@@ -14,11 +14,3 @@ body::-webkit-scrollbar {
   top: 0;
   left: 0;
 }
-
-.text {
-  left: 0rem;
-  top: 0rem;
-  display: flexbox;
-  border: 1px solid blue;
-  text-align: center;
-}
