@@ -25,6 +25,7 @@ export default function AddItem({ onAddItem }: AddItemProps) {
   return (
     <form onSubmit={handleSubmit}>
       <input
+        className="add-item"
         value={itemQuery}
         type="text"
         placeholder="Add an item..."
