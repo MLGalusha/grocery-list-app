@@ -1,33 +1,86 @@
-import requests
-from bs4 import BeautifulSoup
-import time
+# import necessary libraries
 
-total_products = 0
-# download the html document
-# with an HTTP get request
-for page_number in range(1, 13):
-    response = requests.get(f"https://www.scrapingcourse.com/ecommerce/page/{page_number}")
+from selenium import webdriver
 
-    if response.ok:
-        print(f"\n\nPage Number: {page_number}\n")
-        soup = BeautifulSoup(response.content, "html.parser")
+from selenium.webdriver.common.by import By
 
-        parent_element = soup.find(class_="products")
-        if parent_element is not None:
+from selenium.webdriver.chrome.service import Service
 
-            product_name = parent_element.findAll(class_="product-name")
-            for name in product_name:
-                print(name.getText())
-                total_products+=1
-            # image_url = parent_element.findAll("img")["src"]
-            # price = parent_element.findAll(class_="price").getText()
-            # if price is not None and image_url is not None:
-            #     print(price)
-            #     print(f"Image URL: {image_url}")
-            # else:
-            #     print("The price is not right!")
-    else:
-        print("Didn't Work!")
+from selenium.webdriver.support.ui import WebDriverWait
+
+from selenium.webdriver.support import expected_conditions as EC
+
+import csv
 
 
-print(f"Total Products: {total_products}")
+
+# set up chrome driver
+
+service = Service()
+
+options = webdriver.ChromeOptions()
+
+options.add_argument("--headless=new")
+
+driver = webdriver.Chrome(service=service, options=options)
+
+
+
+# navigate to the target webpage
+
+driver.get("https://www.scrapingcourse.com/javascript-rendering")
+
+
+
+# wait for the product grid to load
+
+WebDriverWait(driver, 10).until(
+
+    EC.presence_of_all_elements_located(
+
+        (By.CSS_SELECTOR, "#product-grid .product-item")
+
+    )
+
+)
+
+
+
+# extract product details
+
+products = []
+
+items = driver.find_elements(By.CSS_SELECTOR, "#product-grid .product-item")
+
+for item in items:
+
+    name = item.find_element(By.CSS_SELECTOR, ".product-name").text.strip()
+
+    price = item.find_element(By.CSS_SELECTOR, ".product-price").text.strip()
+
+    image_url = item.find_element(By.CSS_SELECTOR, ".product-image").get_attribute(
+
+        "src"
+
+    )
+
+    products.append({"name": name, "price": price, "imageUrl": image_url})
+
+
+
+# specify the CSV headers
+headers = ["name", "price", "imageUrl"]
+
+# write the extracted data to a CSV file
+with open("products.csv", "w", newline="", encoding="utf-8") as file:
+    writer = csv.DictWriter(file, fieldnames=headers)
+    writer.writeheader()
+    writer.writerows(products)
+
+print("CSV file written successfully.")
+
+
+
+# close the driver
+
+driver.quit()
