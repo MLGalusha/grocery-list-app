@@ -12,10 +12,10 @@ This repository is part of my Grocery List App project—but the focus has shift
   Develop a solid, reliable web scraping module that can extract and update grocery data from one or more major retailers.
 - **Learning Goals:**
   - Understand the fundamentals of HTTP requests and HTML parsing using libraries like **Requests** and **BeautifulSoup**.
-  - Dive deep into browser automation with **Selenium** (including advanced techniques like using Undetected ChromeDriver and Selenium-Stealth) to handle dynamic, JavaScript-driven pages.
+  - Dive deep into browser automation with **Pyppeteer** (including advanced techniques like using Undetected ChromeDriver and Pyppeteer-Stealth) to handle dynamic, JavaScript-driven pages.
   - Learn about anti-bot detection, browser fingerprinting, rotating user-agents, and proxy management.
 - **Technologies:**
-  Python, Requests, BeautifulSoup, Selenium, Undetected ChromeDriver, Selenium-Stealth
+  Python, Requests, BeautifulSoup, Pyppeteer, Undetected ChromeDriver, Pyppeteer-Stealth
 
 ### Phase 2: Web Application
 
